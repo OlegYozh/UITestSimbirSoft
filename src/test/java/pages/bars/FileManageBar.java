@@ -12,7 +12,7 @@ public class FileManageBar {
     }
 
     public FileManageBar(WebDriver driver) {
-        PageFactory.initElements(driver,this);
+        PageFactory.initElements(driver, this);
         this.driver = driver;
     }
 
@@ -24,6 +24,9 @@ public class FileManageBar {
 
     @FindBy(xpath = "//button[@aria-label=\"Ещё\"]")
     public WebElement moreButton;
+
+    @FindBy(xpath = "//button[@aria-label=\"Отменить выделение\"]")
+    public WebElement cancelButton;
 
 
 }

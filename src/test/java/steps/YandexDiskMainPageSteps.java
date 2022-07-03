@@ -6,16 +6,12 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.pagefactory.ElementLocator;
 import pages.YandexDiskMainPage;
-import pages.YandexHomePage;
 import steps.barSteps.FileManagerBarSteps;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class YandexDiskMainPageSteps {
 
@@ -66,8 +62,18 @@ public class YandexDiskMainPageSteps {
     @Step("Открытие папки")
     public void openFolder(String folderName) {
         Actions actions = new Actions(driver);
-        actions.doubleClick(driver.findElement(By.xpath("//span[@title=\""+folderName+"\" and @class=\"clamped-text\"]/ancestor::div[@class=\"listing-item__info\"]"))).perform();
+        actions.doubleClick(driver.findElement(By.xpath("//span[@title=\"" + folderName + "\" and @class=\"clamped-text\"]/ancestor::div[@class=\"listing-item__info\"]"))).perform();
         WaitUtil.waiting(5);
+
+    }
+
+    @Step("Открытие файла")
+    public void openFile(String fileName) {
+        Actions actions = new Actions(driver);
+        actions.doubleClick(driver.findElement(By.xpath("//span[@title=\"" + fileName + "\"]/ancestor::div[contains(@class,'listing-item_type_file')]"))).perform();
+        WaitUtil.waiting(1);
+        new MainTestSteps(driver).switchToNewTab();
+        WaitUtil.waiting(2);
 
     }
 
@@ -81,6 +87,31 @@ public class YandexDiskMainPageSteps {
         YandexDiskMainPage yandexDiskMainPage = new YandexDiskMainPage(driver);
         yandexDiskMainPage.accountButton.click();
         yandexDiskMainPage.logoutButton.click();
+    }
 
+    @Step("Загрузка файла с локальной машины")
+    public void uploadFile() {
+        YandexDiskMainPage yandexDiskMainPage = new YandexDiskMainPage(driver);
+        String userDirectory = System.getProperty("user.dir") + "/" + "src/test/resources/textForExample.txt";
+        yandexDiskMainPage.inputForUpload.sendKeys(userDirectory);
+        WaitUtil.waiting(4);
+    }
+
+    @Step("Проверка соответствия текста")
+    public void checkTextInFile() {
+
+        String text = new String();
+        try (FileReader reader = new FileReader("src/test/resources/textForExample.txt")) {
+            // читаем посимвольно
+            int c;
+            while ((c = reader.read()) != -1) {
+                text += (char) c;
+
+            }
+        } catch (IOException ex) {
+
+            System.out.println(ex.getMessage());
+        }
+        Assert.assertTrue(driver.findElement(By.xpath("//div[@class=\"__page-1\"]/descendant::p")).getText().equals(text));
     }
 }

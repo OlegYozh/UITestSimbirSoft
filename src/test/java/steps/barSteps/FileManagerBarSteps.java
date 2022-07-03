@@ -1,7 +1,6 @@
 package steps.barSteps;
 
 import io.qameta.allure.Step;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import pages.bars.FileManageBar;
 
@@ -28,6 +27,13 @@ public class FileManagerBarSteps {
     public void clickDeleteButton() {
         FileManageBar fileManageBar = new FileManageBar(driver);
         fileManageBar.deleteButton.click();
+
+    }
+
+    @Step("Нажатие кнопки \"Отменить выделение\"")
+    public void clickCancelButton() {
+        FileManageBar fileManageBar = new FileManageBar(driver);
+        fileManageBar.cancelButton.click();
 
     }
 }

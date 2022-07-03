@@ -12,7 +12,7 @@ public class YandexHomePage {
     }
 
     public YandexHomePage(WebDriver driver) {
-        PageFactory.initElements(driver,this);
+        PageFactory.initElements(driver, this);
         this.driver = driver;
     }
 

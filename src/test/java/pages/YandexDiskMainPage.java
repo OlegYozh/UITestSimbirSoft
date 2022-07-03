@@ -12,7 +12,7 @@ public class YandexDiskMainPage {
     }
 
     public YandexDiskMainPage(WebDriver driver) {
-        PageFactory.initElements(driver,this);
+        PageFactory.initElements(driver, this);
         this.driver = driver;
     }
 
@@ -33,5 +33,9 @@ public class YandexDiskMainPage {
 
     @FindBy(xpath = "//span[text()='Выйти']/parent::a")
     public WebElement logoutButton;
+
+    //Поле для загрузки файла с типом "file"
+    @FindBy(xpath = "//input[@type=\"file\"]")
+    public WebElement inputForUpload;
 
 }

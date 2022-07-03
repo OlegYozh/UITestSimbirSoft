@@ -32,4 +32,11 @@ public class MainTestSteps {
         driver.switchTo().window(tabs.get(tabs.size() - 1));
     }
 
+    @Step("Закрыть текущую влкадку")
+    public void closeCurrentTab() {
+        driver.close();
+        ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(tabs.size() - 1));
+    }
+
 }
