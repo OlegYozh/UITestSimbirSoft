@@ -25,11 +25,11 @@ public class YandexLoginPageSteps {
 
         yandexLoginPage.inputField.sendKeys("SimbirSoftTestTimofeev");
         yandexLoginPage.enterButton.click();
-        WaitUtil waitUtil = new WaitUtil();
-        waitUtil.waiting(2);
+
+        WaitUtil.waiting(2);
         yandexLoginPage.inputField.sendKeys("Mayhem95!");
         yandexLoginPage.enterButton.click();
-        waitUtil.waiting(2);
+        WaitUtil.waiting(2);
 
 
     }

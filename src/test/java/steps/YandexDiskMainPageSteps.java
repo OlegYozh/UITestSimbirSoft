@@ -40,7 +40,7 @@ public class YandexDiskMainPageSteps {
 
         driver.findElement(By.xpath("//span[text()='Сохранить']/parent::button")).click();
 
-        new WaitUtil().waiting(4);
+        WaitUtil.waiting(4);
     }
 
     @Step("Операции с файлом")
@@ -49,7 +49,7 @@ public class YandexDiskMainPageSteps {
         yandexDiskMainPage.fileForCopying.click();
         FileManagerBarSteps fileManagerBarSteps = new FileManagerBarSteps(driver);
         fileManagerBarSteps.clickCopyButton();
-        new WaitUtil().waiting(2);
+        WaitUtil.waiting(2);
         driver.findElement(By.xpath("//div[@class=\"b-tree__name\" and @title=\"" + folderName + "\"]")).click();
         driver.findElement(By.xpath("//span[text()='Копировать']/parent::button[contains(@class,'submit')]")).click();
     }
@@ -63,11 +63,11 @@ public class YandexDiskMainPageSteps {
 //
 //    }
 
-    @Step("Открытие папки Симбирсофт")
+    @Step("Открытие папки")
     public void openFolder(String folderName) {
         Actions actions = new Actions(driver);
         actions.doubleClick(driver.findElement(By.xpath("//span[@title=\""+folderName+"\" and @class=\"clamped-text\"]/ancestor::div[@class=\"listing-item__info\"]"))).perform();
-        new WaitUtil().waiting(5);
+        WaitUtil.waiting(5);
 
     }
 

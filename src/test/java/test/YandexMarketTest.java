@@ -30,7 +30,7 @@ public class YandexMarketTest {
     @Story("Переход в маркет и возврат к поиску")
     @Test
     public void test1() {
-        String folderName = new Date().toString().replaceAll(" ","").replaceAll(":","");
+        String folderName = new Date().toString();
         System.out.println(folderName);
         driver.manage().window().setSize(new Dimension(1920, 1080));
         MainTestSteps mainTestSteps = new MainTestSteps(driver);

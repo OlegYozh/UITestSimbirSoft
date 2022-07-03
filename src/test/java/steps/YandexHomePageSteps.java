@@ -64,16 +64,16 @@ public class YandexHomePageSteps {
 
     @Step("Нажатие кнопки \"Войти\"")
     public void clickLoginButton() {
-        new WaitUtil().waiting(2);
+        WaitUtil.waiting(2);
         YandexHomePage yandexHomePage = new YandexHomePage(driver);
         yandexHomePage.loginButton.click();
-        new WaitUtil().waiting(2);
+        WaitUtil.waiting(2);
     }
 
     @Step("Нажатие кнопки \"Диск\"")
     public void clickDiskButton() {
         driver.findElement(By.xpath(" //a[contains(@data-statlog,'disk')]")).click();
-        new WaitUtil().waiting(2);
+        WaitUtil.waiting(2);
 
     }
 }
